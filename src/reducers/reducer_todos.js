@@ -1,4 +1,5 @@
-import { ADD_TODO, TOGGLE_TASK } from '../actions/index';
+import {ADD_TODO, TOGGLE_TASK, DELETE_TASK} from '../actions/index';
+import _ from 'lodash';
 
 export default function (state = [], action) {
     switch (action.type) {
@@ -17,6 +18,9 @@ export default function (state = [], action) {
                     completed: !todo.completed
                 })
             });
+        case DELETE_TASK:
+            return state.filter(t => t.id !== action.payload
+            );
         default:
             return state;
     }

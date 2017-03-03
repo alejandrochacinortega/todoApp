@@ -1,6 +1,7 @@
 export const ADD_TODO = "ADD_TODO";
 export const TOGGLE_TASK = "TOGGLE_TASK";
 export const FILTERING = "FILTERING";
+export const DELETE_TASK  = "DELETE_TASK";
 
 let nextTodoId = 0;
 export function addTodo(task) {
@@ -22,9 +23,15 @@ export function toggleTask(taskId) {
 }
 
 export function filtering(filter) {
-    console.log(' filtering ', filter);
     return {
         type: FILTERING,
         payload: filter
+    }
+}
+
+export function deleteTask(taskId) {
+    return {
+        type: DELETE_TASK,
+        payload: taskId
     }
 }

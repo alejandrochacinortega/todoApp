@@ -1,7 +1,7 @@
 import React from 'react';
 import {connect} from 'react-redux';
 import ListItem from '../components/ListItem';
-import {toggleTask} from '../actions/index';
+import {toggleTask, deleteTask} from '../actions/index';
 
 
 class TodoList extends React.Component {
@@ -13,6 +13,7 @@ class TodoList extends React.Component {
                     <ListItem key={todo.id}
                               {...todo}
                               toggleTask={() => this.props.toggleTask(todo.id)}
+                              deleteTask={() => this.props.deleteTask(todo.id)}
                     />
                 )}
             </div>
@@ -38,4 +39,4 @@ function mapStateToProps(state) {
     }
 }
 
-export default connect(mapStateToProps, {toggleTask})(TodoList);
+export default connect(mapStateToProps, {toggleTask, deleteTask})(TodoList);
