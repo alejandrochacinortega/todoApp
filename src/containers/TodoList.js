@@ -9,11 +9,12 @@ class TodoList extends React.Component {
     render() {
         return (
             <div>
-                {this.props.todos.map((todo) =>
-                    <ListItem key={todo.id}
-                              {...todo}
-                              toggleTask={() => this.props.toggleTask(todo.id)}
-                              deleteTask={() => this.props.deleteTask(todo.id)}
+                {this.props.todos.map((todo, index) =>
+                    <ListItem key={index}
+                              completed={todo.get('completed')}
+                              task={todo.get('task')}
+                              toggleTask={() => this.props.toggleTask(index)}
+                              deleteTask={() => this.props.deleteTask(index)}
                     />
                 )}
             </div>
@@ -27,9 +28,9 @@ function getState(todos, filtering) {
         case "showAll":
             return todos;
         case "completed":
-            return todos.filter(t => t.completed);
+            return todos.filter(t => t.get('completed'));
         case "todo":
-            return todos.filter(t => !t.completed);
+            return todos.filter(t => !t.get('completed'));
     }
 }
 

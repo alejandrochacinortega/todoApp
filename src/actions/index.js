@@ -1,24 +1,23 @@
+import Immutable from 'immutable';
 export const ADD_TODO = "ADD_TODO";
 export const TOGGLE_TASK = "TOGGLE_TASK";
 export const FILTERING = "FILTERING";
 export const DELETE_TASK  = "DELETE_TASK";
 
-let nextTodoId = 0;
 export function addTodo(task) {
     return {
         type: ADD_TODO,
-        payload: {
+        payload: Immutable.fromJS({
             task: task,
-            id: nextTodoId++,
             completed: false
-        }
+        })
     }
 }
 
-export function toggleTask(taskId) {
+export function toggleTask(index) {
     return {
         type: TOGGLE_TASK,
-        payload: taskId
+        index
     }
 }
 
@@ -29,9 +28,9 @@ export function filtering(filter) {
     }
 }
 
-export function deleteTask(taskId) {
+export function deleteTask(index) {
     return {
         type: DELETE_TASK,
-        payload: taskId
+        index,
     }
 }
